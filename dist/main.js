@@ -11,7 +11,7 @@ const redux_saga_1 = __importDefault(require("redux-saga"));
 const Counter_1 = __importDefault(require("./Counter"));
 const reducers_1 = __importDefault(require("./reducers"));
 const sagas_1 = __importDefault(require("./sagas"));
-const operationTypes_1 = require("./operationTypes");
+const counterTypes_1 = require("./counterTypes");
 // Create the saga middleware
 const sagaMiddleware = (0, redux_saga_1.default)();
 const middleware = [sagaMiddleware];
@@ -24,7 +24,7 @@ const store = (0, toolkit_1.configureStore)({
 sagaMiddleware.run(sagas_1.default);
 const action = (type) => store.dispatch({ type });
 function render() {
-    react_dom_1.default.render((0, jsx_runtime_1.jsx)(Counter_1.default, { value: store.getState(), onIncrement: () => action(operationTypes_1.operationTypes.INCREMENT), onDecrement: () => action(operationTypes_1.operationTypes.DECREMENT), onIncrementAsync: () => action(operationTypes_1.operationTypes.INCREMENT_ASYNC) }), document.getElementById("root"));
+    react_dom_1.default.render((0, jsx_runtime_1.jsx)(Counter_1.default, { value: store.getState(), onIncrement: () => action(counterTypes_1.counterTypes.INCREMENT), onDecrement: () => action(counterTypes_1.counterTypes.DECREMENT), onIncrementAsync: () => action(counterTypes_1.counterTypes.INCREMENT_ASYNC) }), document.getElementById("root"));
 }
 render();
 store.subscribe(render);

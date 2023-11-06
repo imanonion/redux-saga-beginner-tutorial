@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const operationTypes_1 = require("./operationTypes");
+const counterTypes_1 = require("./counterTypes");
 function counter(state = 0, action) {
     switch (action.type) {
-        case operationTypes_1.operationTypes.INCREMENT:
+        case counterTypes_1.counterTypes.INCREMENT:
             return state + 1;
-        // case operationTypes.INCREMENT_IF_ODD:
-        //   return state % 2 !== 0 ? state + 1 : state;
-        case operationTypes_1.operationTypes.DECREMENT:
+        // from original sample project, not needed here..
+        // // case counterTypes.INCREMENT_IF_ODD:
+        // //  return state % 2 !== 0 ? state + 1 : state;
+        case counterTypes_1.counterTypes.DECREMENT:
             return state - 1;
         default:
             return state;

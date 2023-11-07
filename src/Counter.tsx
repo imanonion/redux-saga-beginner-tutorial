@@ -1,9 +1,9 @@
-type CounterProps = {
+interface CounterProps {
   value: number;
   onIncrement: React.MouseEventHandler<HTMLButtonElement>;
   onDecrement: React.MouseEventHandler<HTMLButtonElement>;
   onIncrementAsync: React.MouseEventHandler<HTMLButtonElement>;
-};
+}
 
 const Counter = ({
   value,

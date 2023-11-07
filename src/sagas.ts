@@ -1,6 +1,6 @@
 import { put, takeEvery, all, call } from "redux-saga/effects";
 
-function* helloSaga() {
+function helloSaga() {
   console.log("Hello Sagas!");
 }
 
@@ -29,7 +29,16 @@ function* watchIncrementAsync() {
   yield takeEvery("INCREMENT_ASYNC", incrementAsync);
 }
 
+export function* decrementAsync() {
+  yield call(delay, 1000);
+  yield put({ type: "DECREMENT" });
+}
+
+function* watchDecrementAsync() {
+  yield takeEvery("DECREMENT_ASYNC", decrementAsync);
+}
+
 // rootSaga responsible for starting other sagas in parallel (at the same)
 export default function* rootSaga() {
-  yield all([helloSaga(), watchIncrementAsync()]);
+  yield all([helloSaga(), watchIncrementAsync(), watchDecrementAsync()]);
 }

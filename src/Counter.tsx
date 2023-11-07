@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 type CounterProps = {
   value: number;
   onIncrement: React.MouseEventHandler<HTMLButtonElement>;
@@ -21,12 +19,5 @@ const Counter = ({
     <div>Clicked: {value} times</div>
   </div>
 );
-
-Counter.propTypes = {
-  value: PropTypes.number.isRequired,
-  onIncrement: PropTypes.func.isRequired,
-  onDecrement: PropTypes.func.isRequired,
-  onIncrementAsync: PropTypes.func.isRequired,
-};
 
 export default Counter;

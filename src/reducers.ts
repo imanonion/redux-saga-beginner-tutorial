@@ -1,13 +1,10 @@
-import { operationTypes, OperationsActions } from "./operationTypes";
+import { CounterTypes, CounterActions } from "./counterTypes";
 
-export default function counter(state: number = 0, action: OperationsActions) {
+export default function counter(state: number = 0, action: CounterActions) {
   switch (action.type) {
-    case operationTypes.INCREMENT:
+    case "INCREMENT":
       return state + 1;
-    // from original sample project, not needed here..
-    // // case operationTypes.INCREMENT_IF_ODD:
-    // //  return state % 2 !== 0 ? state + 1 : state;
-    case operationTypes.DECREMENT:
+    case "DECREMENT":
       return state - 1;
     default:
       return state;

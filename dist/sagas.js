@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.incrementAsync = exports.delay = void 0;
+exports.decrementAsync = exports.incrementAsync = exports.delay = void 0;
 const effects_1 = require("redux-saga/effects");
-function* helloSaga() {
+function helloSaga() {
     console.log("Hello Sagas!");
 }
 // delay function returns a promise that resolves after a set amount of time
@@ -29,8 +29,16 @@ exports.incrementAsync = incrementAsync;
 function* watchIncrementAsync() {
     yield (0, effects_1.takeEvery)("INCREMENT_ASYNC", incrementAsync);
 }
+function* decrementAsync() {
+    yield (0, effects_1.call)(exports.delay, 1000);
+    yield (0, effects_1.put)({ type: "DECREMENT" });
+}
+exports.decrementAsync = decrementAsync;
+function* watchDecrementAsync() {
+    yield (0, effects_1.takeEvery)("DECREMENT_ASYNC", decrementAsync);
+}
 // rootSaga responsible for starting other sagas in parallel (at the same)
 function* rootSaga() {
-    yield (0, effects_1.all)([helloSaga(), watchIncrementAsync()]);
+    yield (0, effects_1.all)([helloSaga(), watchIncrementAsync(), watchDecrementAsync()]);
 }
 exports.default = rootSaga;

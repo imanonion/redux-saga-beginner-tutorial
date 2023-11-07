@@ -7,7 +7,7 @@ import createSagaMiddleware from "redux-saga";
 import Counter from "./Counter";
 import reducer from "./reducers";
 import rootSaga from "./sagas";
-import { CounterActions, CounterTypes, CounterAction } from "./counterTypes";
+import { CounterAction } from "./operationTypes";
 
 // Create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
@@ -28,9 +28,9 @@ function render() {
   ReactDOM.render(
     <Counter
       value={store.getState()}
-      onIncrement={() => action(CounterTypes.INCREMENT)}
-      onDecrement={() => action(CounterTypes.DECREMENT)}
-      onIncrementAsync={() => action(CounterTypes.INCREMENT_ASYNC)}
+      onIncrement={() => action("INCREMENT")}
+      onDecrement={() => action("DECREMENT")}
+      onIncrementAsync={() => action("INCREMENT_ASYNC")}
     />,
     document.getElementById("root")
   );

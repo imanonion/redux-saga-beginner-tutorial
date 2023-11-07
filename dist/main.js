@@ -1,7 +1,9 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+var __importDefault =
+  (this && this.__importDefault) ||
+  function (mod) {
+    return mod && mod.__esModule ? mod : { default: mod };
+  };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 require("@babel/polyfill");
@@ -11,20 +13,28 @@ const redux_saga_1 = __importDefault(require("redux-saga"));
 const Counter_1 = __importDefault(require("./Counter"));
 const reducers_1 = __importDefault(require("./reducers"));
 const sagas_1 = __importDefault(require("./sagas"));
-const counterTypes_1 = require("./counterTypes");
 // Create the saga middleware
 const sagaMiddleware = (0, redux_saga_1.default)();
 const middleware = [sagaMiddleware];
 // Mount it on the Store
 const store = (0, toolkit_1.configureStore)({
-    reducer: reducers_1.default,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(middleware),
+  reducer: reducers_1.default,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(middleware),
 });
 // Then run the saga
 sagaMiddleware.run(sagas_1.default);
 const action = (type) => store.dispatch({ type });
 function render() {
-    react_dom_1.default.render((0, jsx_runtime_1.jsx)(Counter_1.default, { value: store.getState(), onIncrement: () => action(counterTypes_1.CounterTypes.INCREMENT), onDecrement: () => action(counterTypes_1.CounterTypes.DECREMENT), onIncrementAsync: () => action(counterTypes_1.CounterTypes.INCREMENT_ASYNC) }), document.getElementById("root"));
+  react_dom_1.default.render(
+    (0, jsx_runtime_1.jsx)(Counter_1.default, {
+      value: store.getState(),
+      onIncrement: () => action("INCREMENT"),
+      onDecrement: () => action("DECREMENT"),
+      onIncrementAsync: () => action("INCREMENT_ASYNC"),
+    }),
+    document.getElementById("root")
+  );
 }
 render();
 store.subscribe(render);

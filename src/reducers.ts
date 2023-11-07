@@ -1,4 +1,4 @@
-import { CounterTypes, CounterActions } from "./counterTypes";
+import { CounterActions } from "./operationTypes";
 
 export default function counter(state: number = 0, action: CounterActions) {
   switch (action.type) {

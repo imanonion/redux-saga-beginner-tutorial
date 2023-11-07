@@ -24,7 +24,7 @@ const store = (0, toolkit_1.configureStore)({
 sagaMiddleware.run(sagas_1.default);
 const action = (type) => store.dispatch({ type });
 function render() {
-    react_dom_1.default.render((0, jsx_runtime_1.jsx)(Counter_1.default, { value: store.getState(), onIncrement: () => action(counterTypes_1.counterTypes.INCREMENT), onDecrement: () => action(counterTypes_1.counterTypes.DECREMENT), onIncrementAsync: () => action(counterTypes_1.counterTypes.INCREMENT_ASYNC) }), document.getElementById("root"));
+    react_dom_1.default.render((0, jsx_runtime_1.jsx)(Counter_1.default, { value: store.getState(), onIncrement: () => action(counterTypes_1.CounterTypes.INCREMENT), onDecrement: () => action(counterTypes_1.CounterTypes.DECREMENT), onIncrementAsync: () => action(counterTypes_1.CounterTypes.INCREMENT_ASYNC) }), document.getElementById("root"));
 }
 render();
 store.subscribe(render);

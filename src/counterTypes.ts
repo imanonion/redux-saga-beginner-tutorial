@@ -1,10 +1,9 @@
-export enum counterTypes {
-  INCREMENT = "INCREMENT",
-  DECREMENT = "DECREMENT",
-  INCREMENT_ASYNC = "INCREMENT_ASYNC",
-}
+export const CounterTypes = {
+  INCREMENT: "INCREMENT",
+  DECREMENT: "DECREMENT",
+  INCREMENT_ASYNC: "INCREMENT_ASYNC",
+} as const;
 
-export type CounterActions =
-  | { type: counterTypes.DECREMENT }
-  | { type: counterTypes.INCREMENT }
-  | { type: counterTypes.INCREMENT_ASYNC };
+export type CounterAction = keyof typeof CounterTypes;
+
+export type CounterActions = Record<"type", CounterAction>;

@@ -3,6 +3,7 @@ interface CounterProps {
   onIncrement: React.MouseEventHandler<HTMLButtonElement>;
   onDecrement: React.MouseEventHandler<HTMLButtonElement>;
   onIncrementAsync: React.MouseEventHandler<HTMLButtonElement>;
+  onDecrementAsync: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const Counter = ({
@@ -10,8 +11,10 @@ const Counter = ({
   onIncrement,
   onDecrement,
   onIncrementAsync,
+  onDecrementAsync,
 }: CounterProps) => (
   <div>
+    <button onClick={onDecrementAsync}>Increment after 1 second</button>{" "}
     <button onClick={onIncrementAsync}>Increment after 1 second</button>{" "}
     <button onClick={onIncrement}>Increment</button>{" "}
     <button onClick={onDecrement}>Decrement</button>

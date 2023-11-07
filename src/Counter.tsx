@@ -22,7 +22,11 @@ const Counter = ({
     </div>
     <div>
       <button onClick={onDecrement}>Decrement</button>{" "}
+<<<<<<< HEAD
       <button onClick={onDecrementAsync}>Decrement after 1 second</button>
+=======
+      <button onClick={onDecrementAsync}>Decrement after 1 second</button>{" "}
+>>>>>>> bba4e3c (Added functionality to decrementAsync button)
     </div>
     <hr />
   </div>

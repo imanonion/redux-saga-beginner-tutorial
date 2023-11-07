@@ -29,6 +29,7 @@ const store = (0, toolkit_1.configureStore)({
 // Then run the saga
 sagaMiddleware.run(counter_sagas_1.default);
 function render() {
+<<<<<<< HEAD
   react_dom_1.default.render(
     (0, jsx_runtime_1.jsx)(react_redux_1.Provider, {
       store: store,
@@ -44,6 +45,9 @@ function render() {
     }),
     document.getElementById("root")
   );
+=======
+    react_dom_1.default.render((0, jsx_runtime_1.jsx)(Counter_1.default, { value: store.getState(), onIncrement: () => action("INCREMENT"), onDecrement: () => action("DECREMENT"), onIncrementAsync: () => action("INCREMENT_ASYNC"), onDecrementAsync: () => action("DECREMENT_ASYNC") }), document.getElementById("root"));
+>>>>>>> bba4e3c (Added functionality to decrementAsync button)
 }
 render();
 store.subscribe(render);

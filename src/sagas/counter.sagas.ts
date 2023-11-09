@@ -40,15 +40,6 @@ function* watchDecrementAsync() {
   yield takeEvery(actions.delayedDecrement, decrementAsync);
 }
 
-export function* decrementAsync() {
-  yield call(delay, 1000);
-  yield put({ type: "DECREMENT" });
-}
-
-function* watchDecrementAsync() {
-  yield takeEvery("DECREMENT_ASYNC", decrementAsync);
-}
-
 // rootSaga responsible for starting other sagas in parallel (at the same)
 export default function* rootSaga() {
   yield all([helloSaga(), watchIncrementAsync(), watchDecrementAsync()]);

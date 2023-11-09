@@ -14,7 +14,7 @@ test("incrementAsync Saga test", (assert) => {
 
   assert.deepEqual(
     gen.next().value,
-    put(actions.increment),
+    put(actions.increment()),
     "incrementAsync Saga must dispatch an INCREMENT action"
   );
 

@@ -1,6 +1,7 @@
 import test from "tape";
 import { put, call } from "redux-saga/effects";
-import { delay, incrementAsync } from "./sagas";
+import { delay, incrementAsync } from "./counter.sagas";
+import * as actions from "../actions";
 
 test("incrementAsync Saga test", (assert) => {
   const gen = incrementAsync();
@@ -13,7 +14,7 @@ test("incrementAsync Saga test", (assert) => {
 
   assert.deepEqual(
     gen.next().value,
-    put({ type: "INCREMENT" }),
+    put(actions.increment()),
     "incrementAsync Saga must dispatch an INCREMENT action"
   );
 

@@ -24,7 +24,11 @@ const store = (0, toolkit_1.configureStore)({
 // Then run the saga
 sagaMiddleware.run(counter_sagas_1.default);
 function render() {
+<<<<<<< HEAD
     react_dom_1.default.render((0, jsx_runtime_1.jsx)(react_redux_1.Provider, { store: store, children: (0, jsx_runtime_1.jsx)(Counter_1.default, { value: store.getState().count, onIncrement: () => store.dispatch((0, actions_1.increment)()), onDecrement: () => store.dispatch((0, actions_1.decrement)()), onIncrementAsync: () => store.dispatch((0, actions_1.delayedIncrement)()), onDecrementAsync: () => store.dispatch((0, actions_1.delayedDecrement)()) }) }), document.getElementById("root"));
+=======
+    react_dom_1.default.render((0, jsx_runtime_1.jsx)(Counter_1.default, { value: store.getState(), onIncrement: () => action("INCREMENT"), onDecrement: () => action("DECREMENT"), onIncrementAsync: () => action("INCREMENT_ASYNC"), onDecrementAsync: () => action("DECREMENT_ASYNC") }), document.getElementById("root"));
+>>>>>>> master
 }
 render();
 store.subscribe(render);

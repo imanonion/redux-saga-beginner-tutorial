@@ -14,6 +14,8 @@ const Counter = ({
   onDecrementAsync,
 }: CounterProps) => (
   <div>
+    <h1>Counter</h1>
+    <p>Value: {value}</p>
     <div>
       <button onClick={onIncrement}>Increment</button>{" "}
       <button onClick={onIncrementAsync}>Increment after 1 second</button>{" "}
@@ -23,7 +25,6 @@ const Counter = ({
       <button onClick={onDecrementAsync}>Decrement after 1 second</button>
     </div>
     <hr />
-    <div>Clicked: {value} times</div>
   </div>
 );
 

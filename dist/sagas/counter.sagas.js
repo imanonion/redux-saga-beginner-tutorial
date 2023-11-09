@@ -25,7 +25,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.decrementAsync = exports.incrementAsync = exports.delay = void 0;
 const effects_1 = require("redux-saga/effects");
-const actions = __importStar(require("./actions"));
+const actions = __importStar(require("../actions"));
 function helloSaga() {
     console.log("Hello Sagas!");
 }
@@ -45,7 +45,7 @@ function* incrementAsync() {
     // after the promise is resolved above, this next statement is then executed
     // `put` is an EFFECT that is retrieved by the middleware
     // the INCREMENT action is dispatched
-    yield (0, effects_1.put)(actions.increment);
+    yield (0, effects_1.put)(actions.increment());
 }
 exports.incrementAsync = incrementAsync;
 //Watcher saga that will spawn a new incrementAsync task on each INCREMENT_ASYNC action
@@ -53,11 +53,13 @@ exports.incrementAsync = incrementAsync;
 function* watchIncrementAsync() {
     yield (0, effects_1.takeEvery)(actions.delayedIncrement, incrementAsync);
 }
+// generator function for delayed decrement
 function* decrementAsync() {
     yield (0, effects_1.call)(exports.delay, 1000);
-    yield (0, effects_1.put)(actions.decrement);
+    yield (0, effects_1.put)(actions.decrement());
 }
 exports.decrementAsync = decrementAsync;
+// watcher saga for delayed decrement
 function* watchDecrementAsync() {
     yield (0, effects_1.takeEvery)(actions.delayedDecrement, decrementAsync);
 }

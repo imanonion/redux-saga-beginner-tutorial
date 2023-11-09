@@ -22,18 +22,23 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const tape_1 = __importDefault(require("tape"));
-const effects_1 = require("redux-saga/effects");
-const sagas_1 = require("./sagas");
-const actions = __importStar(require("./actions"));
-(0, tape_1.default)("incrementAsync Saga test", (assert) => {
-    const gen = (0, sagas_1.incrementAsync)();
-    assert.deepEqual(gen.next().value, (0, effects_1.call)(sagas_1.delay, 1000), "incrementAsync saga must call delay(1000)");
-    assert.deepEqual(gen.next().value, (0, effects_1.put)(actions.increment), "incrementAsync Saga must dispatch an INCREMENT action");
-    assert.deepEqual(gen.next(), { done: true, value: undefined }, "incrementAsync Saga must be done");
-    assert.end();
-});
+exports.initialState = void 0;
+const toolkit_1 = require("@reduxjs/toolkit");
+const actions = __importStar(require("../actions/index"));
+/**
+ * Define initial counter state
+ */
+exports.initialState = {
+    count: 0,
+};
+/**
+ * create reducer
+ */
+exports.default = (0, toolkit_1.createReducer)(exports.initialState, (builder) => builder
+    .addCase(actions.increment, (state) => {
+    state.count += 1;
+})
+    .addCase(actions.decrement, (state) => {
+    state.count -= 1;
+}));

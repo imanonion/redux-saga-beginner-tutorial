@@ -1,12 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.counterTypes = void 0;
+const PREFIX = "counter";
 /**
  * Object to hold the counter types
  */
 exports.counterTypes = {
-    INCREMENT: "INCREMENT",
-    DECREMENT: "DECREMENT",
-    INCREMENT_ASYNC: "INCREMENT_ASYNC",
-    DECREMENT_ASYNC: "DECREMENT_ASYNC",
+    INCREMENT: `${PREFIX}/INCREMENT`,
+    DECREMENT: `${PREFIX}/DECREMENT`,
+    INCREMENT_ASYNC: `${PREFIX}/INCREMENT_ASYNC`,
+    DECREMENT_ASYNC: `${PREFIX}/DECREMENT_ASYNC`,
 };

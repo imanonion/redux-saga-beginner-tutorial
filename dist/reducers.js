@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function counter(state = 0, action) {
+function counterReducer(state = 0, action) {
     switch (action.type) {
         case "INCREMENT":
             return state + 1;
@@ -10,4 +10,4 @@ function counter(state = 0, action) {
             return state;
     }
 }
-exports.default = counter;
+exports.default = counterReducer;

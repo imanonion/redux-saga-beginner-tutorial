@@ -1,4 +1,5 @@
 import { put, takeEvery, all, call } from "redux-saga/effects";
+import * as actions from "../actions";
 
 function helloSaga() {
   console.log("Hello Sagas!");
@@ -20,22 +21,23 @@ export function* incrementAsync() {
   // after the promise is resolved above, this next statement is then executed
   // `put` is an EFFECT that is retrieved by the middleware
   // the INCREMENT action is dispatched
-  yield put({ type: "INCREMENT" });
+  yield put(actions.increment());
 }
 
 //Watcher saga that will spawn a new incrementAsync task on each INCREMENT_ASYNC action
 // takeEvery is a helper function that listens for dispatched INCREMENT_ASYNC actions and then runs incrementAsync each time
 function* watchIncrementAsync() {
-  yield takeEvery("INCREMENT_ASYNC", incrementAsync);
+  yield takeEvery(actions.delayedIncrement, incrementAsync);
 }
 
+// generator function for delayed decrement
 export function* decrementAsync() {
   yield call(delay, 1000);
-  yield put({ type: "DECREMENT" });
+  yield put(actions.decrement());
 }
-
+// watcher saga for delayed decrement
 function* watchDecrementAsync() {
-  yield takeEvery("DECREMENT_ASYNC", decrementAsync);
+  yield takeEvery(actions.delayedDecrement, decrementAsync);
 }
 
 // rootSaga responsible for starting other sagas in parallel (at the same)

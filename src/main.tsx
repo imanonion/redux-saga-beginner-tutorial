@@ -1,17 +1,24 @@
 import "@babel/polyfill";
 
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
 
 import Counter from "./Counter";
-import reducer from "./reducers";
-import rootSaga from "./sagas";
-import { CounterAction } from "./counterTypes";
+import reducer from "./reducers/counter.reducers";
+import rootSaga from "./sagas/counter.sagas";
+import {
+  decrement,
+  increment,
+  delayedDecrement,
+  delayedIncrement,
+} from "./actions";
 
 // Create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
+
 // Mount it on the Store
 const store = configureStore({
   reducer,
@@ -22,17 +29,17 @@ const store = configureStore({
 // Then run the saga
 sagaMiddleware.run(rootSaga);
 
-const action = (type: CounterAction) => store.dispatch({ type });
-
 function render() {
   ReactDOM.render(
-    <Counter
-      value={store.getState()}
-      onIncrement={() => action("INCREMENT")}
-      onDecrement={() => action("DECREMENT")}
-      onIncrementAsync={() => action("INCREMENT_ASYNC")}
-      onDecrementAsync={() => action("DECREMENT_ASYNC")}
-    />,
+    <Provider store={store}>
+      <Counter
+        value={store.getState().count}
+        onIncrement={() => store.dispatch(increment())}
+        onDecrement={() => store.dispatch(decrement())}
+        onIncrementAsync={() => store.dispatch(delayedIncrement())}
+        onDecrementAsync={() => store.dispatch(delayedDecrement())}
+      />
+    </Provider>,
     document.getElementById("root")
   );
 }
